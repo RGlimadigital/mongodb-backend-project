@@ -21,4 +21,10 @@ public class Product {
     private Category category;
 
 
+    public Product(ProductDTO productDTO){
+        this.title = productDTO.title();
+        this.description = productDTO.description();
+        this.ownerId = productDTO.onwnerId();
+        this.price = productDTO.price();
+    }
 }

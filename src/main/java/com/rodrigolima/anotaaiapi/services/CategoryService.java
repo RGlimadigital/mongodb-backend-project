@@ -25,7 +25,7 @@ public class CategoryService {
     }
 
     public Category findById(String id){
-        return repository.findById(id).orElseThrow(() -> new RuntimeException("Element not Found"));
+        return repository.findById(id).orElseThrow(CategoryNotFoundException::new);
     }
 
     public Category updateCategory(String id, CategoryDTO categoryDTO){
@@ -40,7 +40,7 @@ public class CategoryService {
     }
 
     public void deleteCategory(String id){
-        repository.findById(id).orElseThrow(CategoryNotFoundException::new);
-        repository.deleteById(id);
+       Category categoryToDelete = repository.findById(id).orElseThrow(CategoryNotFoundException::new);
+        repository.delete(categoryToDelete);
     }
 }
